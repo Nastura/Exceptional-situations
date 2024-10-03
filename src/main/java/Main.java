@@ -6,11 +6,11 @@ public class Main {
         Product prod1 = new Product(1, "Заголовок", 2);
         Product prod2 = new Product(1, "Заголовок", 2);
 
-//        try {
-//            repo.add(prod1);
-//        } catch (NotFoundException e) {
-//            System.out.println("Отчет сгенерирован");
-//        }
+        try {
+            repo.add(prod1);
+        } catch (NotFoundException e) {
+            System.out.println("Отчет сгенерирован");
+        }
 
         try {
             repo.add(prod1);

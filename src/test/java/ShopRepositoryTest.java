@@ -8,13 +8,12 @@ public class ShopRepositoryTest {
 
     public void successOfDeletingAnExistingElement() { // Успешное удаление существующего элемента
 
-        Product prod1 = new Product(1, "Заголовок", 2);
-        Product prod2 = new Product(2, "Заголовок", 2);
+        Product prod1 = new Product(1, "Хлеб", 2);
+        Product prod2 = new Product(2, "Молоко", 2);
         ShopRepository tmp = new ShopRepository();
         tmp.add(prod1);
         tmp.add(prod2);
         tmp.remove(2);
-
         Product[] expected = {prod1};
         Product[] actual = tmp.findAll();
         Assertions.assertArrayEquals(expected, actual);
@@ -36,8 +35,8 @@ public class ShopRepositoryTest {
 
     public void throwingNotFoundException() { //генерация отчета
 
-        Product prod1 = new Product(1, "Заголовок", 2);
-        Product prod2 = new Product(2, "Заголовок", 2);
+        Product prod1 = new Product(1, "Хлеб", 2);
+        Product prod2 = new Product(2, "Молоко", 2);
         ShopRepository tmp = new ShopRepository();
         tmp.add(prod1);
         tmp.add(prod2);
@@ -50,9 +49,9 @@ public class ShopRepositoryTest {
     @Test
     public void addingTheSameId() { // ИД совпадают
 
-        Product prod1 = new Product(1, "Заголовок", 2);
-        Product prod2 = new Product(2, "Заголовок", 2);
-        Product prod3 = new Product(2, "Заголовок", 2);
+        Product prod1 = new Product(1, "Хлеб", 25);
+        Product prod2 = new Product(2, "Молоко", 40);
+        Product prod3 = new Product(2, "Сметана", 50);
         ShopRepository tmp = new ShopRepository();
         tmp.add(prod1);
         tmp.add(prod2);
@@ -65,13 +64,33 @@ public class ShopRepositoryTest {
     @Test
     public void addElement() { // добавление элемента в массив
 
-        Product prod1 = new Product(1, "Заголовок", 10);
+        Product prod1 = new Product(1, "Хлеб", 10);
         ShopRepository repo = new ShopRepository();
         repo.add(prod1);
         Product[] expected = {prod1};
         Product[] actual = repo.findAll();
         Assertions.assertArrayEquals(expected, actual);
 
+    }
+
+    @Test
+    public void comparisonOfTheInputHeader() {
+        Product prod1 = new Product(1, "Хлеб", 10);
+        ShopRepository repo = new ShopRepository();
+        repo.add(prod1);
+        String expected = "Хлеб";
+        String actual = prod1.getTitle();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void comparisonOfTheInputPrice() {
+        Product prod1 = new Product(1, "Хлеб", 10);
+        ShopRepository repo = new ShopRepository();
+        repo.add(prod1);
+        int expected = 10;
+        int actual = prod1.getPrice();
+        Assertions.assertEquals(expected, actual);
     }
 
 }
